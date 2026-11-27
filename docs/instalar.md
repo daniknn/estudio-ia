@@ -9,6 +9,8 @@ Hay dos vías. Elige una; puedes usar la otra después.
 
 ## Vía Claude Code
 
+Aquí no descargas zips: el comando del paso 2 trae las 13 skills directo de GitHub.
+
 1. Asegúrate de tener Claude Code actualizado. La primera vez, corre `claude update`.
 2. Agrega el marketplace:
    ```
@@ -23,7 +25,7 @@ Hay dos vías. Elige una; puedes usar la otra después.
 
 ## Vía claude.ai
 
-1. Abre la [última Release](https://github.com/daniknn/estudio-ia/releases/latest. Hasta abajo, en **Assets**, descarga los archivos `.zip` que tienen nombre de skill: `inicio.zip`, `wiki.zip`, `brief.zip`, `guion.zip` y los demás (son 13). No descargues los de **Source code**: son el código del repositorio y no sirven para subir. Para probar rápido bastan `inicio.zip`, `brief.zip` y `guion.zip`.
+1. Abre la [última Release](https://github.com/daniknn/estudio-ia/releases/latest. Hasta abajo, en **Assets**, descarga los archivos `.zip` que tienen nombre de skill: `inicio.zip`, `wiki.zip`, `brief.zip`, `guion.zip` y los demás (son 13). No descargues los de **Source code**: son el código del repositorio y no sirven para subir. Para probar rápido bastan tres, con descarga directa: [inicio.zip](https://github.com/daniknn/estudio-ia/releases/latest/download/inicio.zip), [brief.zip](https://github.com/daniknn/estudio-ia/releases/latest/download/brief.zip) y [guion.zip](https://github.com/daniknn/estudio-ia/releases/latest/download/guion.zip).
 2. No descomprimas los zips. Si tu navegador los abrió solo y ves carpetas en lugar de archivos `.zip` (pasa con Safari en Mac), descárgalos de nuevo con Chrome o desactiva en Safari la opción de abrir archivos seguros después de descargarlos.
 3. En claude.ai abre Customize, luego Skills, y elige Upload. Sube un zip a la vez.
 4. Activa la ejecución de código en tus ajustes. Sin ella, las skills no funcionan completas.

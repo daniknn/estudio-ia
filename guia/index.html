@@ -113,10 +113,10 @@ ol.steps > li::before { content: counter(st); font-family: var(--f-mono); font-s
 ol.steps .body { display: grid; gap: 10px; min-width: 0; }
 
 .install { display: grid; gap: 40px; }
-.install > div { display: grid; gap: 18px; min-width: 0; }
+.install > div { display: grid; gap: 18px; min-width: 0; align-content: start; }
 
 .cmd { background: var(--code-bg); color: var(--code-fg); border-radius: var(--r-sm); min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px; padding: 4px 8px 4px 0; }
-.cmd pre { margin: 0; padding: 12px 8px 12px 16px; overflow-x: auto; font-family: var(--f-mono); font-size: 0.86rem; line-height: 1.55; min-width: 0; }
+.cmd pre { margin: 0; padding: 12px 8px 12px 16px; overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--f-mono); font-size: 0.86rem; line-height: 1.55; min-width: 0; }
 .cmd pre:focus-visible { box-shadow: inset 0 0 0 3px #F5C518; }
 .copy { min-height: 44px; min-width: 76px; border: 1px solid #8A8A92; background: transparent; color: var(--code-fg); border-radius: var(--r-sm); font: 600 0.85rem var(--f-body); cursor: pointer; }
 .copy:hover { background: rgba(255,255,255,0.1); }
@@ -231,6 +231,7 @@ footer p { color: var(--fg); }
     <div class="install">
       <div id="instalar-code">
         <h3>Vía Claude Code</h3>
+        <p>Aquí no descargas zips: el comando del paso 2 trae las 13 skills directo de GitHub.</p>
         <ol class="steps">
           <li><div class="body">
             <p>Ten Claude Code actualizado. La primera vez, corre:</p>
@@ -260,8 +261,9 @@ footer p { color: var(--fg); }
         <ol class="steps">
           <li><div class="body">
             <p>Abre la última Release. Hasta abajo, en <b>Assets</b>, descarga los archivos <code>.zip</code> que tienen nombre de skill: <code>inicio.zip</code>, <code>wiki.zip</code>, <code>brief.zip</code>, <code>guion.zip</code> y los demás (son 13). No descargues los de <b>Source code</b>: son el código del repositorio y no sirven para subir.</p>
-            <div class="row"><a class="btn" href="https://github.com/daniknn/estudio-ia/releases/latest">Ir a la Release</a></div>
-            <p>Para probar rápido bastan <code>inicio.zip</code>, <code>brief.zip</code> y <code>guion.zip</code>. Sube los demás cuando los necesites.</p>
+            <p>Para probar rápido bastan tres. Descárgalos directo:</p>
+            <div class="row"><a class="btn" href="https://github.com/daniknn/estudio-ia/releases/latest/download/inicio.zip">Descargar inicio.zip</a><a class="btn" href="https://github.com/daniknn/estudio-ia/releases/latest/download/brief.zip">Descargar brief.zip</a><a class="btn" href="https://github.com/daniknn/estudio-ia/releases/latest/download/guion.zip">Descargar guion.zip</a></div>
+            <div class="row"><a class="btn ghost" href="https://github.com/daniknn/estudio-ia/releases/latest">Ver los 13 en la Release</a></div>
           </div></li>
           <li><div class="body">
             <p>No descomprimas los zips. Si tu navegador los abrió solo y ves carpetas en lugar de archivos <code>.zip</code> (pasa con Safari en Mac), descárgalos de nuevo con Chrome o desactiva en Safari la opción de abrir archivos seguros después de descargarlos.</p>
