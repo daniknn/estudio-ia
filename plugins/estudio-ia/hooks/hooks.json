@@ -1,0 +1,17 @@
+{
+  "description": "Exige consultar el saldo (y cotizar, cuando la herramienta lo permite) antes de gastar créditos en Higgsfield.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^mcp__.*__(generate_(video|image|audio|3d)(_batch)?|execute_preset|upscale_(image|video)|outpaint_image|remove_background|reframe|ads_studio_generate|ai_influencer_generate|build_ai_influencer|shorts_studio_create|scene_builder_3d_generate_(video|angles)|motion_control|dubbing|voice_change|create_voice(_from_confirmed_audio)?|apps_invoke)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/saldo-higgsfield.sh\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

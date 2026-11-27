@@ -1,0 +1,12 @@
+{
+  "name": "estudio-ia",
+  "version": "0.1.0",
+  "description": "Crea contenidos con IA a tu ritmo: perfil, wiki y proyectos con skills para brief, storytelling, guion, reto en frío, shotlist y prompts de video.",
+  "author": {
+    "name": "Daria Nikitina"
+  },
+  "license": "MIT AND CC-BY-4.0",
+  "repository": "https://github.com/daniknn/estudio-ia",
+  "homepage": "https://daniknn.github.io/estudio-ia/",
+  "keywords": ["contenido", "video", "guion", "storytelling", "wiki", "higgsfield", "brief", "shotlist"]
+}

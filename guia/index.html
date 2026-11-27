@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>estudio-ia: guía de instalación</title>
+<meta name="description" content="Instala estudio-ia en Claude Code o en claude.ai y crea contenidos con IA: brief, guion, shotlist y prompts de video.">
+<style>
+/* Identidad de claqueta: tinta, papel y cinta gaffer amarilla. Sin recursos externos. */
+:root {
+  --accent: #F5C518;
+  --on-accent: #121214;
+  --mark: rgba(245,197,24,0.55);
+  --bg: #FAFAF7;
+  --bg-alt: #F0EFEA;
+  --card: #FFFFFF;
+  --tinted: #FFF4C2;
+  --fg: #2B2B30;
+  --fg-strong: #121214;
+  --muted: #55555B;
+  --link: #121214;
+  --link-line: #B88F00;
+  --on-tinted: #3D3000;
+  --border: #CFCDC4;
+  --border-tinted: #E9C94A;
+  --nav: #121214;
+  --on-nav: #FAFAF7;
+  --warn-bg: #FFE3C7; --warn-fg: #6B3400;
+  --ok-bg: #D3EEDC; --ok-fg: #17553A;
+  --code-bg: #121214; --code-fg: #F0EFEA;
+  --btn-border: #8A8A92;
+  --focus: 0 0 0 3px #FAFAF7, 0 0 0 6px #121214;
+  --f-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --f-display: "Arial Narrow", "Helvetica Neue", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --r-sm: 6px; --r-lg: 12px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mark: rgba(245,197,24,0.3);
+    --bg: #121214; --bg-alt: #1B1B1F; --card: #1B1B1F; --tinted: #2B2508;
+    --fg: #D9D8D2; --fg-strong: #FAFAF7; --muted: #A9A8A2; --link: #FAFAF7; --link-line: #F5C518; --on-tinted: #FFE28A;
+    --border: #3A3A41; --border-tinted: #6B5A12; --nav: #0B0B0D;
+    --warn-bg: #3A2410; --warn-fg: #FFD8B0; --ok-bg: #12301F; --ok-fg: #C6E8D4;
+    --code-bg: #0B0B0D; --code-fg: #F0EFEA; --btn-border: #8A8A92;
+    --focus: 0 0 0 3px #121214, 0 0 0 6px #F5C518;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 12px; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 17px; line-height: 1.6; overflow-wrap: break-word; }
+a { color: var(--link); text-decoration-color: var(--link-line); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--link); }
+a:focus-visible, button:focus-visible { outline: none; box-shadow: var(--focus); border-radius: 4px; }
+h1, h2, h3 { font-family: var(--f-display); color: var(--fg-strong); text-wrap: balance; line-height: 1.1; margin: 0; }
+h2 { font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.4rem); font-weight: 800; }
+h3 { font-size: 1.25rem; font-weight: 700; }
+p { margin: 0; }
+code { font-family: var(--f-mono); font-size: 0.88em; }
+:not(pre) > code { background: var(--tinted); color: var(--on-tinted); padding: 0.1em 0.35em; border-radius: 5px; overflow-wrap: anywhere; }
+
+.wrap { max-width: 980px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.read { max-width: 68ch; }
+section { padding-block: clamp(40px, 6vw, 72px); border-top: 1px solid var(--border); }
+section .wrap { display: grid; gap: 24px; }
+.eyebrow { font-family: var(--f-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.skip { position: absolute; left: 16px; top: -100px; background: var(--accent); color: var(--on-accent); padding: 12px 16px; border-radius: var(--r-sm); z-index: 10; }
+.skip:focus { top: 8px; }
+
+header.top { background: var(--nav); color: var(--on-nav); }
+header.top .wrap { display: flex; flex-wrap: wrap; gap: 4px 24px; align-items: center; justify-content: space-between; padding-block: 8px; }
+header.top .brand { font-family: var(--f-mono); font-size: 0.85rem; letter-spacing: 0.06em; display: inline-flex; gap: 10px; align-items: center; min-height: 44px; }
+header.top .brand::before { content: ""; width: 26px; height: 14px; background: repeating-linear-gradient(-45deg, var(--accent) 0 5px, var(--nav) 5px 10px); border: 1px solid var(--accent); }
+header.top nav { display: flex; flex-wrap: wrap; gap: 0 6px; font-size: 0.95rem; }
+header.top nav a { color: var(--on-nav); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; padding-inline: 8px; }
+header.top nav a:hover { text-decoration: underline; }
+header.top a:focus-visible { box-shadow: 0 0 0 3px #121214, 0 0 0 6px #F5C518; }
+
+.hero { padding-block: clamp(40px, 7vw, 88px) clamp(32px, 5vw, 56px); border-top: 0; }
+.hero h1 { font-size: clamp(2.6rem, 1.6rem + 5vw, 5rem); font-weight: 800; text-transform: uppercase; letter-spacing: -0.01em; max-width: 14ch; }
+.hero h1 em { font-style: normal; background: linear-gradient(transparent 58%, var(--mark) 58%); }
+.hero .lede { font-size: 1.15rem; max-width: 56ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.chips li { border: 1px solid var(--border-tinted); background: var(--card); border-radius: 999px; padding: 6px 14px; color: var(--fg-strong); font-weight: 500; font-size: 0.95rem; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 18px; border-radius: var(--r-sm); background: var(--accent); color: var(--on-accent); font-weight: 700; text-decoration: none; border: 2px solid var(--accent); }
+.btn:hover { filter: brightness(0.95); }
+.btn.ghost { background: transparent; color: var(--fg-strong); border-color: var(--btn-border); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; }
+.path { border: 1px solid var(--border); border-radius: var(--r-lg); padding: 20px; background: var(--card); display: grid; gap: 12px; align-content: start; min-width: 0; }
+.path .tag { justify-self: start; font-family: var(--f-mono); font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; font-weight: 600; background: var(--tinted); color: var(--on-tinted); }
+.path ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
+.path .btn { justify-self: start; }
+
+ol.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; counter-reset: st; }
+ol.steps > li { counter-increment: st; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 12px; align-items: start; }
+ol.steps > li::before { content: counter(st); font-family: var(--f-mono); font-size: 0.85rem; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-weight: 700; }
+ol.steps .body { display: grid; gap: 10px; min-width: 0; }
+
+.install { display: grid; gap: 40px; }
+.install > div { display: grid; gap: 18px; min-width: 0; }
+
+.cmd { background: var(--code-bg); color: var(--code-fg); border-radius: var(--r-sm); min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px; padding: 4px 8px 4px 0; }
+.cmd pre { margin: 0; padding: 12px 8px 12px 16px; overflow-x: auto; font-family: var(--f-mono); font-size: 0.86rem; line-height: 1.55; min-width: 0; }
+.cmd pre:focus-visible { box-shadow: inset 0 0 0 3px #F5C518; }
+.copy { min-height: 44px; min-width: 76px; border: 1px solid #8A8A92; background: transparent; color: var(--code-fg); border-radius: var(--r-sm); font: 600 0.85rem var(--f-body); cursor: pointer; }
+.copy:hover { background: rgba(255,255,255,0.1); }
+.copy:focus-visible { box-shadow: 0 0 0 3px #0B0B0D, 0 0 0 6px #F5C518; }
+.copy.done { background: #F5C518; color: #121214; border-color: #F5C518; }
+
+.note { border: 1px solid var(--border-tinted); background: var(--tinted); color: var(--on-tinted); border-radius: var(--r-lg); padding: 14px 18px; }
+.note.warn { background: var(--warn-bg); color: var(--warn-fg); border-color: transparent; }
+.note b { font-weight: 700; }
+
+.flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 12px; counter-reset: fl; }
+.flow li { counter-increment: fl; border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--card); padding: 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.flow li::before { content: "Paso " counter(fl); font-family: var(--f-mono); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+.skills { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; }
+.skills li { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--card); padding: 16px 18px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.skills code.n { justify-self: start; font-weight: 700; font-size: 0.95rem; }
+
+.three { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px; }
+.three > div { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--card); padding: 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.three h3 { font-size: 1.15rem; }
+
+ul.plain { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+
+footer { border-top: 1px solid var(--border); padding-block: 32px 48px; background: var(--bg-alt); }
+footer .wrap { display: grid; gap: 12px; }
+footer p { color: var(--fg); }
+
+@media (min-width: 860px) { .install { grid-template-columns: 1fr 1fr; gap: 32px; } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<header class="top">
+  <div class="wrap">
+    <span class="brand">estudio-ia</span>
+    <nav aria-label="Secciones">
+      <a href="#vias">Elige tu vía</a>
+      <a href="#instalar">Instalar</a>
+      <a href="#primeros-pasos">Primeros pasos</a>
+      <a href="#skills">Skills</a>
+      <a href="#creditos">Créditos</a>
+      <a href="#actualizar">Actualizar</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+<section class="hero" id="que-es">
+  <div class="wrap">
+    <p class="eyebrow">Guía de instalación</p>
+    <h1>Crea con IA, <em>a tu manera</em></h1>
+    <p class="lede">estudio-ia es un ecosistema público para crear contenidos con IA: video, redes, artículos, web y podcast. Lo instalas tú, sin depender de nadie.</p>
+    <p class="read">Te da skills con buenas prácticas, un perfil tuyo, un wiki de lo que aprendes y proyectos ordenados: brief, guion, shotlist y prompts de video. Funciona en Claude Code (la vía completa) y en claude.ai (la vía ligera con un Proyecto).</p>
+    <ul class="chips" aria-label="Qué incluye">
+      <li>8 skills</li>
+      <li>Tu perfil</li>
+      <li>Tu wiki</li>
+      <li>Tus proyectos</li>
+    </ul>
+    <div class="row">
+      <a class="btn" href="#vias">Empezar</a>
+      <a class="btn ghost" href="https://github.com/daniknn/estudio-ia">Ver en GitHub</a>
+    </div>
+  </div>
+</section>
+
+<section id="vias">
+  <div class="wrap">
+    <div class="read">
+      <p class="eyebrow">Paso 1</p>
+      <h2>Elige tu vía</h2>
+      <p>Elige una; puedes usar la otra después.</p>
+    </div>
+    <div class="paths">
+      <article class="path" aria-labelledby="via-code">
+        <span class="tag">La vía completa</span>
+        <h3 id="via-code">Claude Code</h3>
+        <p>Trabajas en una carpeta tuya, con wiki, proyectos y archivos reales.</p>
+        <ul>
+          <li>Claude lee y escribe tus archivos.</li>
+          <li>Wiki completo: carpetas, fichas e índice.</li>
+          <li>Se recomienda usar git en tu carpeta.</li>
+        </ul>
+        <a class="btn" href="#instalar-code">Instalar en Claude Code</a>
+      </article>
+      <article class="path" aria-labelledby="via-web">
+        <span class="tag">La vía ligera</span>
+        <h3 id="via-web">claude.ai (Free)</h3>
+        <p>Trabajas en un Proyecto, sin instalar nada en tu computadora.</p>
+        <ul>
+          <li>Subes un zip por skill y creas el Proyecto "Mi estudio".</li>
+          <li>Wiki ligero: un solo archivo <code>wiki.md</code>.</li>
+          <li>Necesitas activar la ejecución de código.</li>
+        </ul>
+        <a class="btn" href="#instalar-web">Instalar en claude.ai</a>
+      </article>
+    </div>
+    <div class="note warn read"><b>Una sola vía por cuenta.</b> No instales la misma skill por las dos vías en la misma cuenta. Si instalas el plugin en Claude Code y además subes los zips en claude.ai con la sincronización de skills activa, la skill queda duplicada y puede comportarse de forma impredecible. Usa una sola vía por cuenta, o desactiva la sincronización.</div>
+  </div>
+</section>
+
+<section id="instalar">
+  <div class="wrap">
+    <div class="read">
+      <p class="eyebrow">Paso 2</p>
+      <h2>Instalar, paso a paso</h2>
+    </div>
+    <div class="install">
+      <div id="instalar-code">
+        <h3>Vía Claude Code</h3>
+        <ol class="steps">
+          <li><div class="body">
+            <p>Ten Claude Code actualizado. La primera vez, corre:</p>
+            <div class="cmd"><pre tabindex="0"><code>claude update</code></pre><button class="copy" type="button" aria-label="Copiar el comando claude update">Copiar</button></div>
+          </div></li>
+          <li><div class="body">
+            <p>Agrega el marketplace:</p>
+            <div class="cmd"><pre tabindex="0"><code>/plugin marketplace add daniknn/estudio-ia</code></pre><button class="copy" type="button" aria-label="Copiar el comando para agregar el marketplace">Copiar</button></div>
+          </div></li>
+          <li><div class="body">
+            <p>Instala el plugin:</p>
+            <div class="cmd"><pre tabindex="0"><code>/plugin install estudio-ia@estudio-ia-daniknn</code></pre><button class="copy" type="button" aria-label="Copiar el comando para instalar el plugin">Copiar</button></div>
+          </div></li>
+          <li><div class="body">
+            <p>Crea una carpeta para tu espacio y copia dentro el contenido de <code>espacio/</code> del <a href="https://github.com/daniknn/estudio-ia">repositorio</a>. Se recomienda usar git en esa carpeta.</p>
+          </div></li>
+          <li><div class="body">
+            <p>Abre Claude Code en esa carpeta y escribe:</p>
+            <div class="cmd"><pre tabindex="0"><code>/estudio-ia:inicio</code></pre><button class="copy" type="button" aria-label="Copiar el comando de inicio">Copiar</button></div>
+          </div></li>
+        </ol>
+        <div class="note"><b>Si algo falla.</b> Si <code>/estudio-ia:inicio</code> no aparece, revisa que el plugin esté instalado con <code>/plugin</code> y reinicia Claude Code.</div>
+      </div>
+
+      <div id="instalar-web">
+        <h3>Vía claude.ai</h3>
+        <ol class="steps">
+          <li><div class="body">
+            <p>Descarga los zips de la última Release del repositorio. Hay uno por skill.</p>
+            <div class="row"><a class="btn" href="https://github.com/daniknn/estudio-ia/releases/latest">Descargar los zips</a></div>
+          </div></li>
+          <li><div class="body">
+            <p>En claude.ai abre Customize, luego Skills, y elige Upload. Sube un zip por skill (son 8).</p>
+          </div></li>
+          <li><div class="body">
+            <p>Activa la ejecución de código en tus ajustes. Sin ella, las skills no funcionan completas.</p>
+          </div></li>
+          <li><div class="body">
+            <p>Crea un Proyecto llamado:</p>
+            <div class="cmd"><pre tabindex="0"><code>Mi estudio</code></pre><button class="copy" type="button" aria-label="Copiar el nombre del Proyecto">Copiar</button></div>
+          </div></li>
+          <li><div class="body">
+            <p>En las instrucciones del Proyecto, pega el contenido de <code>claude-ai/instrucciones-proyecto.md</code> del <a href="https://github.com/daniknn/estudio-ia">repositorio</a>.</p>
+          </div></li>
+          <li><div class="body">
+            <p>Sube al Proyecto los archivos <code>claude-ai/perfil.md</code> y <code>claude-ai/wiki.md</code>, llenando primero tu perfil. Por cada proyecto, sube una copia de <code>claude-ai/proyecto-plantilla.md</code> con su nombre.</p>
+          </div></li>
+          <li><div class="body">
+            <p>Abre un chat dentro del Proyecto y escribe:</p>
+            <div class="cmd"><pre tabindex="0"><code>quiero empezar</code></pre><button class="copy" type="button" aria-label="Copiar la frase quiero empezar">Copiar</button></div>
+          </div></li>
+        </ol>
+        <div class="note"><b>Si algo falla.</b> Si la skill no se activa, confirma que subiste el zip de esa skill y que la ejecución de código está activa.</div>
+      </div>
+    </div>
+    <p class="read">Para desinstalar en Claude Code, usa <code>/plugin uninstall estudio-ia@estudio-ia-daniknn</code>; tu carpeta de espacio no se borra, es tuya. En claude.ai, quita cada skill de estudio-ia en Customize, Skills.</p>
+  </div>
+</section>
+
+<section id="primeros-pasos">
+  <div class="wrap">
+    <div class="read">
+      <p class="eyebrow">Paso 3</p>
+      <h2>Primeros pasos</h2>
+      <p>Al empezar, te hace unas preguntas, una por turno, y deja listo tu perfil. Después, tu primera pieza va en este orden.</p>
+    </div>
+    <ol class="flow">
+      <li>
+        <h3><code>inicio</code></h3>
+        <p>Una entrevista corta que crea tu perfil y la estructura de tu espacio.</p>
+        <p>En Claude Code: <code>/estudio-ia:inicio</code>. En claude.ai: "quiero empezar".</p>
+      </li>
+      <li>
+        <h3><code>brief</code></h3>
+        <p>Define qué debe lograr tu pieza en el público, para quién es y qué queda fuera.</p>
+        <p>En Claude Code: <code>/estudio-ia:brief</code>.</p>
+      </li>
+      <li>
+        <h3><code>guion</code></h3>
+        <p>Escribe el guion con gancho y cierre, para video, reel, short, YouTube, anuncio o podcast.</p>
+        <p>En Claude Code: <code>/estudio-ia:guion</code>.</p>
+      </li>
+    </ol>
+    <div class="cmd read"><pre tabindex="0"><code>/estudio-ia:inicio</code></pre><button class="copy" type="button" aria-label="Copiar el comando de inicio">Copiar</button></div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="read">
+      <p class="eyebrow">Qué trae</p>
+      <h2>Las 8 skills</h2>
+      <p>En Claude Code se invocan como <code>/estudio-ia:&lt;skill&gt;</code>. En claude.ai se activan solas según lo que pidas.</p>
+    </div>
+    <ul class="skills">
+      <li><code class="n">inicio</code><p>Primera vez: una entrevista corta y crea tu perfil y la estructura de tu espacio.</p></li>
+      <li><code class="n">wiki</code><p>Ingiere fuentes, crea fichas de conceptos con su fuente, mantiene el índice y responde citando el wiki.</p></li>
+      <li><code class="n">brief</code><p>Brief de una pieza en cualquier formato: qué debe lograr en el público, para quién y qué queda fuera.</p></li>
+      <li><code class="n">storytelling</code><p>Elige y aplica una estructura narrativa según el formato y el efecto que buscas.</p></li>
+      <li><code class="n">guion</code><p>Guion para video, reel, short, YouTube, anuncio o podcast, con gancho y cierre.</p></li>
+      <li><code class="n">reto-en-frio</code><p>Otro modelo lee tu pieza en frío e intenta romperla; tú decides cada hallazgo.</p></li>
+      <li><code class="n">guion-a-shotlist</code><p>Convierte un guion por escenas en un shotlist con propósito por plano.</p></li>
+      <li><code class="n">prompt-video</code><p>Convierte un plano en un prompt de video; Higgsfield es opcional, con cotización y tu "sí".</p></li>
+    </ul>
+  </div>
+</section>
+
+<section id="como-funciona">
+  <div class="wrap">
+    <div class="read">
+      <p class="eyebrow">Tus piezas</p>
+      <h2>Cómo funcionan tu wiki y tus proyectos</h2>
+      <p>estudio-ia se apoya en tres piezas tuyas. El perfil orienta todo, el wiki alimenta los proyectos con lo que ya sabes, y los proyectos dejan aprendizajes que enriquecen el wiki.</p>
+    </div>
+    <div class="three">
+      <div>
+        <h3>Perfil</h3>
+        <p><code>perfil.md</code> dice quién eres como creador: qué haces, para quién, tu voz, tus formatos y herramientas, y tu tope de créditos al mes. Las skills lo leen antes de trabajar para no preguntarte lo mismo cada vez.</p>
+      </div>
+      <div>
+        <h3>Wiki</h3>
+        <p>Pegas una fuente (un artículo, una transcripción, un PDF) y la skill <code>wiki</code> crea fichas de conceptos, cada una con su fuente. Nunca inventa fuentes: si no hay una, la ficha dice "sin verificar". Si el wiki no tiene la respuesta, lo dice en lugar de improvisar.</p>
+      </div>
+      <div>
+        <h3>Proyectos</h3>
+        <p>Cada pieza es un proyecto: empieza con un brief, sigue con la estructura narrativa y el guion, y si es video con IA, con un shotlist, un estilo y los prompts de cada plano. Al terminar anotas aprendizajes, que pueden volver al wiki.</p>
+      </div>
+    </div>
+    <div class="note read"><b>Una nota honesta sobre las dos vías.</b> El wiki completo (carpetas, <code>RAW/</code>, una ficha por archivo, índice y enlaces) es de la vía Claude Code, porque ahí Claude puede leer y escribir tus archivos. En claude.ai se usa un wiki ligero: un solo archivo <code>wiki.md</code> con las fichas como secciones. Claude no escribe en los archivos de tu Proyecto: te entrega el archivo completo actualizado y tú reemplazas el anterior. Si prefieres no manejar archivos, existe el modo ligero: Claude responde en el chat y tú copias lo que te sirva. Cuando el wiki ligero pasa de unos 40 conceptos o 60 KB, conviene dividirlo por tema o pasar a Claude Code.</div>
+  </div>
+</section>
+
+<section id="creditos">
+  <div class="wrap">
+    <div class="read">
+      <p class="eyebrow">Opcional</p>
+      <h2>Créditos y Higgsfield</h2>
+      <p>Higgsfield es opcional y va con tu propia cuenta. Cada clip que generas gasta créditos, y no se reembolsan. Por eso el tope se cuida antes de generar, no después.</p>
+    </div>
+    <div class="note warn read"><b>Sin cotización y sin tu "sí", no se genera.</b> Esta regla vale en Claude Code y en claude.ai. En claude.ai no hay un freno automático, pero la regla es la misma.</div>
+    <div class="three">
+      <div>
+        <h3>Cotiza antes de generar</h3>
+        <ul class="plain">
+          <li>Mira tu saldo en Higgsfield.</li>
+          <li>Pide la cotización del clip. Higgsfield dice cuánto costaría, sin generar nada.</li>
+          <li>Compárala con lo que te queda de tu presupuesto.</li>
+          <li>Genera solo si te alcanza y respondes "sí" tú mismo, un plano a la vez.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Tu presupuesto</h3>
+        <p>En tu brief puedes fijar <code>presupuesto_creditos</code>, y en tu perfil un <code>tope_creditos_mes</code>. Son opcionales, pero te protegen de sorpresas a fin de mes.</p>
+        <p>Cada archivo de <code>prompts/</code> guarda el <code>costo_creditos</code> real de su clip. Suma también las versiones viejas: un clip regenerado ya gastó sus créditos.</p>
+      </div>
+      <div>
+        <h3>Cómo bajar el costo</h3>
+        <ul class="plain">
+          <li>Menos duración: ¿de verdad necesitas 8 s o alcanzan 5?</li>
+          <li>Menos resolución: prueba en 720p antes de pedir más.</li>
+          <li>Un modo más barato, si tu modelo lo tiene.</li>
+          <li>Sin audio, si el sonido lo vas a hacer aparte.</li>
+          <li>Menos intentos: afina el prompt en texto antes de generar.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="read">Los precios cambian: usa siempre la cotización de tu cuenta. Si aun así necesitas pasarte de tu tope, decide tú: sube el número en tu brief con conciencia de lo que gastas.</p>
+  </div>
+</section>
+
+<section id="actualizar">
+  <div class="wrap">
+    <div class="read">
+      <p class="eyebrow">Mantenerlo al día</p>
+      <h2>Actualizar</h2>
+      <p>Cada vía se actualiza de forma distinta. Lee primero las notas de la Release para saber qué cambió; si algo cambia en el formato de tus archivos, ahí se explica cómo adaptarlos.</p>
+    </div>
+    <div class="paths">
+      <div class="path">
+        <h3>Claude Code</h3>
+        <ul>
+          <li>Actualiza el marketplace y el plugin desde <code>/plugin</code> (opción de actualizar), o vuelve a correr el comando de agregar el marketplace.</li>
+          <li>Si algo no aparece, corre <code>claude update</code> y reinicia.</li>
+          <li>Tus archivos (<code>perfil.md</code>, <code>wiki/</code>, <code>proyectos/</code>) no se tocan: solo cambian las skills.</li>
+        </ul>
+        <div class="cmd"><pre tabindex="0"><code>/plugin marketplace add daniknn/estudio-ia</code></pre><button class="copy" type="button" aria-label="Copiar el comando para volver a agregar el marketplace">Copiar</button></div>
+      </div>
+      <div class="path">
+        <h3>claude.ai</h3>
+        <ul>
+          <li>Entra a la última Release y descarga los zips nuevos.</li>
+          <li>En Customize, Skills, sube de nuevo cada zip para reemplazar la versión anterior.</li>
+          <li>Si cambió <code>claude-ai/instrucciones-proyecto.md</code>, pega el texto nuevo en las instrucciones de tu Proyecto.</li>
+          <li>Tus archivos del Proyecto no cambian solos: se actualizan cuando reemplazas el archivo que Claude te entrega.</li>
+        </ul>
+        <a class="btn" href="https://github.com/daniknn/estudio-ia/releases/latest">Ir a la última Release</a>
+      </div>
+    </div>
+    <p class="read">La versión actual de esta guía es 0.1.0.</p>
+  </div>
+</section>
+
+<section id="licencias">
+  <div class="wrap">
+    <div class="read">
+      <p class="eyebrow">Abierto</p>
+      <h2>Licencias</h2>
+    </div>
+    <div class="paths">
+      <div class="path">
+        <h3>Código: MIT</h3>
+        <p>Aplica a <code>hooks/</code>, <code>scripts/</code>, <code>herramientas/</code> y <code>evals/</code>.</p>
+        <a class="btn ghost" href="https://opensource.org/licenses/MIT">Licencia MIT</a>
+      </div>
+      <div class="path">
+        <h3>Contenido: CC BY 4.0</h3>
+        <p>Aplica a <code>SKILL.md</code>, <code>references/</code>, <code>docs/</code>, <code>espacio/</code>, <code>claude-ai/</code>, <code>ejemplos/</code> y <code>guia/</code>.</p>
+        <a class="btn ghost" href="https://creativecommons.org/licenses/by/4.0/">Licencia CC BY 4.0</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>estudio-ia</b>. Creado por Daria Nikitina.</p>
+    <p><a href="https://github.com/daniknn/estudio-ia">Repositorio en GitHub</a> · <a href="https://github.com/daniknn/estudio-ia/releases/latest">Última Release</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var buttons = document.querySelectorAll('.copy');
+  function fallback(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed'; ta.style.top = '-1000px';
+    document.body.appendChild(ta); ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    return ok;
+  }
+  function mark(btn, ok) {
+    var prev = btn.getAttribute('data-label') || btn.textContent;
+    btn.setAttribute('data-label', prev);
+    btn.textContent = ok ? 'Copiado' : 'Selecciona y copia';
+    if (ok) btn.classList.add('done');
+    setTimeout(function () { btn.textContent = prev; btn.classList.remove('done'); }, 1800);
+  }
+  Array.prototype.forEach.call(buttons, function (btn) {
+    btn.addEventListener('click', function () {
+      var code = btn.parentNode.querySelector('code');
+      var text = code ? code.textContent : '';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { mark(btn, true); }, function () { mark(btn, fallback(text)); });
+      } else { mark(btn, fallback(text)); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

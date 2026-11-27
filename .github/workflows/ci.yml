@@ -1,0 +1,26 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pruebas del hook de saldo
+        run: sh plugins/estudio-ia/hooks/tests/run.sh
+      - name: Pruebas del empaquetador
+        run: python3 herramientas/test_empaquetar.py
+      - name: Empaquetar skills (valida frontmatter y limites)
+        run: python3 herramientas/empaquetar.py
+      - name: JSON validos
+        run: |
+          python3 -c "import json; json.load(open('.claude-plugin/marketplace.json')); json.load(open('plugins/estudio-ia/.claude-plugin/plugin.json'))"
+      - name: Sin rastros de curso ni guiones largos
+        run: |
+          if grep -rniE 'lca425|amerike|\bgate\b|pull request|r[uú]brica|alumno|—|–' plugins/estudio-ia/skills docs espacio claude-ai ejemplos guia; then
+            echo "Se encontraron palabras o signos no permitidos"; exit 1
+          fi

@@ -1,0 +1,14 @@
+{
+  "name": "estudio-ia-daniknn",
+  "owner": {
+    "name": "Daria Nikitina"
+  },
+  "description": "Skills para crear contenidos con IA: perfil, wiki y proyectos, de forma autónoma.",
+  "plugins": [
+    {
+      "name": "estudio-ia",
+      "source": "./plugins/estudio-ia",
+      "description": "Ecosistema autónomo para crear contenidos con IA: perfil, wiki y proyectos con skills para brief, storytelling, guion, shotlist y prompts de video."
+    }
+  ]
+}

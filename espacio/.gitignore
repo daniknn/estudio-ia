@@ -1,0 +1,8 @@
+# Medios pesados: no se versionan
+*.mp4
+*.mov
+*.wav
+*.mp3
+*.psd
+*.zip
+.DS_Store
