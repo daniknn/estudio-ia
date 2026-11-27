@@ -16,6 +16,8 @@ jobs:
         run: python3 herramientas/test_empaquetar.py
       - name: Empaquetar skills (valida frontmatter y limites)
         run: python3 herramientas/empaquetar.py
+      - name: Zips de la guia al dia
+        run: python3 herramientas/incrustar_zips.py --check
       - name: JSON validos
         run: |
           python3 -c "import json; json.load(open('.claude-plugin/marketplace.json')); json.load(open('plugins/estudio-ia/.claude-plugin/plugin.json'))"
