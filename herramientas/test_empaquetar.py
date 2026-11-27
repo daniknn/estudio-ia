@@ -7,7 +7,7 @@ import zipfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import empaquetar  # noqa: E402
+import empaquetar
 
 
 def make_skill(root, name, frontmatter=None, body="Cuerpo.\n"):
@@ -66,6 +66,16 @@ class EmpaquetarTest(unittest.TestCase):
             empaquetar.validate(self.skills / "larga")
         self.assertIn("501", str(cm.exception))
         self.assertEqual(self.run_main(), 1)
+
+    def test_dos_puntos_sin_comillas(self):
+        make_skill(self.skills, "puntos", "name: puntos\ndescription: Arma tu pieza: con gancho\nlicense: CC-BY-4.0")
+        with self.assertRaises(empaquetar.SkillError) as cm:
+            empaquetar.validate(self.skills / "puntos")
+        self.assertIn("sin comillas", str(cm.exception))
+
+    def test_dos_puntos_con_comillas(self):
+        make_skill(self.skills, "comillas", 'name: comillas\ndescription: "Arma tu pieza: con gancho"\nlicense: CC-BY-4.0')
+        empaquetar.validate(self.skills / "comillas")
 
 
 if __name__ == "__main__":

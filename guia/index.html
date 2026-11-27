@@ -175,7 +175,7 @@ footer p { color: var(--fg); }
     <p class="lede">estudio-ia es un ecosistema público para crear contenidos con IA: video, redes, artículos, web y podcast. Lo instalas tú, sin depender de nadie.</p>
     <p class="read">Te da skills con buenas prácticas, un perfil tuyo, un wiki de lo que aprendes y proyectos ordenados: brief, guion, shotlist y prompts de video. Funciona en Claude Code (la vía completa) y en claude.ai (la vía ligera con un Proyecto).</p>
     <ul class="chips" aria-label="Qué incluye">
-      <li>8 skills</li>
+      <li>13 skills</li>
       <li>Tu perfil</li>
       <li>Tu wiki</li>
       <li>Tus proyectos</li>
@@ -263,7 +263,7 @@ footer p { color: var(--fg); }
             <div class="row"><a class="btn" href="https://github.com/daniknn/estudio-ia/releases/latest">Descargar los zips</a></div>
           </div></li>
           <li><div class="body">
-            <p>En claude.ai abre Customize, luego Skills, y elige Upload. Sube un zip por skill (son 8).</p>
+            <p>En claude.ai abre Customize, luego Skills, y elige Upload. Sube un zip por skill (son 13).</p>
           </div></li>
           <li><div class="body">
             <p>Activa la ejecución de código en tus ajustes. Sin ella, las skills no funcionan completas.</p>
@@ -313,6 +313,16 @@ footer p { color: var(--fg); }
         <p>Escribe el guion con gancho y cierre, para video, reel, short, YouTube, anuncio o podcast.</p>
         <p>En Claude Code: <code>/estudio-ia:guion</code>.</p>
       </li>
+      <li>
+        <h3><code>revisar</code></h3>
+        <p>Opcional: antes de publicar, pasa una lista de verificación con hallazgos y evidencia; tú decides cada punto.</p>
+        <p>En Claude Code: <code>/estudio-ia:revisar</code>.</p>
+      </li>
+      <li>
+        <h3><code>aprendizaje</code></h3>
+        <p>Opcional: al cerrar la pieza, guarda lo que aprendiste y pasa lo útil a tu wiki.</p>
+        <p>En Claude Code: <code>/estudio-ia:aprendizaje</code>.</p>
+      </li>
     </ol>
     <div class="cmd read"><pre tabindex="0"><code>/estudio-ia:inicio</code></pre><button class="copy" type="button" aria-label="Copiar el comando de inicio">Copiar</button></div>
   </div>
@@ -322,7 +332,7 @@ footer p { color: var(--fg); }
   <div class="wrap">
     <div class="read">
       <p class="eyebrow">Qué trae</p>
-      <h2>Las 8 skills</h2>
+      <h2>Las 13 skills</h2>
       <p>En Claude Code se invocan como <code>/estudio-ia:&lt;skill&gt;</code>. En claude.ai se activan solas según lo que pidas.</p>
     </div>
     <ul class="skills">
@@ -334,6 +344,11 @@ footer p { color: var(--fg); }
       <li><code class="n">reto-en-frio</code><p>Otro modelo lee tu pieza en frío e intenta romperla; tú decides cada hallazgo.</p></li>
       <li><code class="n">guion-a-shotlist</code><p>Convierte un guion por escenas en un shotlist con propósito por plano.</p></li>
       <li><code class="n">prompt-video</code><p>Convierte un plano en un prompt de video; Higgsfield es opcional, con cotización y tu "sí".</p></li>
+      <li><code class="n">articulo</code><p>Artículo, nota, crónica o post con titular, entrada, cuerpo y cierre; cita solo fuentes reales y marca [sin verificar] lo demás.</p></li>
+      <li><code class="n">pagina-web</code><p>Página sencilla (landing, portafolio o proyecto) con secciones, textos y llamada a la acción; el index.html solo si lo pides.</p></li>
+      <li><code class="n">podcast</code><p>Escaleta por bloques con gancho primero, diseño sonoro con licencias y notas del episodio.</p></li>
+      <li><code class="n">aprendizaje</code><p>Al cerrar una pieza o un intento, guarda lo que aprendiste y pasa lo útil al wiki; nunca inventa lecciones.</p></li>
+      <li><code class="n">revisar</code><p>Lista de verificación antes de publicar, con hallazgos y evidencia; tú decides cada punto.</p></li>
     </ul>
   </div>
 </section>
@@ -429,7 +444,7 @@ footer p { color: var(--fg); }
         <a class="btn" href="https://github.com/daniknn/estudio-ia/releases/latest">Ir a la última Release</a>
       </div>
     </div>
-    <p class="read">La versión actual de esta guía es 0.1.1.</p>
+    <p class="read">La versión actual de esta guía es 0.2.0.</p>
   </div>
 </section>
 

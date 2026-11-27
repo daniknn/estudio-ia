@@ -7,12 +7,13 @@ Cada vía se actualiza de forma distinta.
 1. Actualiza el marketplace y el plugin desde `/plugin` (opción de actualizar), o vuelve a correr `/plugin marketplace add daniknn/estudio-ia`.
 2. Si algo no aparece, corre `claude update` para tener la última versión de Claude Code y reinicia.
 3. Tus archivos (`perfil.md`, `wiki/`, `proyectos/`) no se tocan: las actualizaciones solo cambian las skills.
+4. La versión 0.2.0 pasa de 8 a 13 skills: se suman `articulo`, `pagina-web`, `podcast`, `aprendizaje` y `revisar`.
 
-**Versión visible:** la versión del plugin está en `plugins/estudio-ia/.claude-plugin/plugin.json` y en el listado de `/plugin`. La versión actual de esta guía es 0.1.1.
+**Versión visible:** la versión del plugin está en `plugins/estudio-ia/.claude-plugin/plugin.json` y en el listado de `/plugin`. La versión actual de esta guía es 0.2.0.
 
 ## claude.ai
 
-1. Entra a la última Release del repositorio y descarga los zips nuevos.
+1. Entra a la última Release del repositorio y descarga los zips nuevos (son 13, uno por skill).
 2. En Customize, Skills, sube de nuevo cada zip para reemplazar la versión anterior.
 3. Si cambió `claude-ai/instrucciones-proyecto.md`, pega el texto nuevo en las instrucciones de tu Proyecto.
 4. Tus archivos del Proyecto (`perfil.md`, `wiki.md`, proyectos) no cambian solos: se actualizan cuando reemplazas el archivo que Claude te entrega.

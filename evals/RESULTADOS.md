@@ -129,3 +129,92 @@ Después de corregir `wiki`, `brief` y `guion-a-shotlist`, y de agregar a las 8 
 | shotlist-B | guion-a-shotlist | 4/5 | 5/5 | 0.90 |
 
 Costo de esta corrida: USD 2.81. Total acumulado de evals: USD 17.56.
+
+## v0.2.0
+
+Corrida: 2026-11-26, cliente Claude Code 2.1.128, `--model sonnet`, 5 corridas por caso, umbral 4/5. Salidas completas en `/private/tmp/estudio-ia-v02-main` (y la corrida de estimación de 1 por caso en `/private/tmp/estudio-ia-v02-est`). Los casos nuevos usan fixtures nuevos en `fixtures/extra/v02/proyectos/` que cada caso copia en su `setup()` (no se tocó ningún archivo de `fixtures/espacio`, así que los casos viejos no cambian). Se corrieron también `guion-*` y `prompt-*` porque esas skills se editaron.
+
+### Por caso
+
+| Caso | Skill | Pasa | Costo (USD) | Umbral | Qué prueba |
+|---|---|---|---|---|---|
+| articulo-A | articulo | 5/5 | 0.97 | cumple | slash; `articulo.md` desde brief; solo wiki/RAW; sin URLs ni cifras fuera de brief/prompt |
+| articulo-B | articulo | 1/5 | 0.63 | NO cumple | sin slash ("escríbeme una nota para mi blog"); carga la skill |
+| articulo-C | articulo | 5/5 | 0.96 | cumple | pide un dato ausente del wiki: `[sin verificar]` + `## Por verificar`, sin Fuente/URL/cifra inventadas |
+| articulo-D | articulo | 5/5 | 0.27 | cumple | "estoy en claude.ai": no escribe, ofrece archivo completo o modo ligero |
+| pagina-web-A | pagina-web | 5/5 | 0.61 | cumple | slash; `web.md` con secciones, CTA, alt, SEO; sin index.html, correo ni enlaces inventados |
+| pagina-web-B | pagina-web | 5/5 | 1.45 | cumple | sin slash pidiendo el HTML; `web/index.html` sin recursos externos, con viewport, `lang` y alt en cada img |
+| podcast-A | podcast | 4/5 | 1.07 | cumple | slash; `Duración estimada:` primero, `## [mm:ss]` sin rangos, diseño sonoro |
+| podcast-B | podcast | 5/5 | 1.08 | cumple | sin slash, entrevista; no inventa dichos ni biografía del invitado (ver "Cambios a checks") |
+| aprendizaje-A | aprendizaje | 5/5 | 0.65 | cumple | slash con lecciones; agrega entrada fechada sin tocar lo anterior |
+| aprendizaje-B | aprendizaje | 5/5 | 0.37 | cumple | sin lecciones; no escribe nada |
+| revisar-A | revisar | 5/5 | 0.61 | cumple | cifra sin fuente y canción de terceros sin crédito: ambas señaladas con evidencia; no edita |
+| revisar-B | revisar | 5/5 | 0.63 | cumple | sin slash ("revísalo antes de publicar"); carga revisar |
+| guion-A | guion | 5/5 | 0.71 | cumple | repetición tras editar la skill |
+| guion-B | guion | 5/5 | 0.65 | cumple | idem |
+| guion-C | guion | 4/5 | 0.29 | cumple | idem (antes 5/5) |
+| prompt-A | prompt-video | 5/5 | 0.70 | cumple | repetición tras editar la skill |
+| prompt-B | prompt-video | 3/5 | 0.83 | NO cumple | idem (antes 5/5); ver abajo, 2 de 2 fallas parecen del check |
+
+Costo: corrida de estimación USD 1.89 + corrida principal USD 12.48 = **USD 14.37 de los 30 del tope**. Casos nuevos solos (5x): USD 9.30. No se omitió ninguna corrida por presupuesto.
+
+### Cambios a checks después de ver resultados (falsos negativos demostrables)
+
+1. `podcast-B`: el check marcaba como "cita atribuida al invitado" cualquier frase entre comillas en una línea que dijera "Don Chema", "invitado" o "panadero", aunque la dijera la conductora (p. ej. `Transición: "Esa luz es la de Don Chema…"`, `"Don Chema, gracias por recibirme."`). Revisé a mano las 5 escaletas: ninguna pone palabras en boca del invitado. Primera versión (regex ancha, también en la corrida de estimación): 1/5 (y 0/1 en la estimación). Después de la primera revisión de la regex (quitar "dice" y "panader"): seguía marcando texto de la conductora. Versión final: solo cuenta como atribución `Chema|invitado` seguido de responde/dice/cuenta/explica… o una etiqueta `Don Chema:` / `Invitado:` / `Respuesta:` al inicio de línea. Resultado final 5/5. Comprobé con un archivo sintético (`Don Chema responde: "Llevo cuarenta años…"`) que el check sigue fallando cuando sí hay una cita atribuida.
+2. `articulo-C`: el check exigía el literal `[sin verificar]`; la corrida 4 marcó `[sin verificar: año exacto de primera publicación]` y `[sin verificar: porcentaje exacto de usuarios de Instagram…]`, es decir, marcó y listó ambos datos en `## Por verificar`. Se aceptan ahora `[sin verificar]` y `[sin verificar: …]`. Antes 4/5, después 5/5. (Es una desviación menor del literal que pide la skill; ver abajo.)
+
+No se cambió ningún check de los casos viejos. Para `prompt-B` solo reporto abajo.
+
+### Casos que fallan o tuvieron fallas
+
+#### articulo-B (1/5, no cumple): no carga la skill sin slash
+
+- **Qué pasa:** en 4 de 5 corridas el modelo leyó perfil, wiki y brief y escribió `articulo.md` directamente, sin invocar la herramienta Skill (solo Read/Bash/Write). Solo la corrida 1 invocó `articulo`. El resto de los checks del caso (archivo con titular, secciones, tema) no se evaluó porque el check corta en la primera falla; los 4 archivos existen. Extracto (corrida 2): "Voy a leer el perfil, el índice de la wiki y el brief antes de escribir el artículo. Tengo todo lo que necesito. Voy a escribir el artículo ahora."
+- **Causa probable:** `skills/articulo/SKILL.md`, `description`: sus disparadores son "escribe mi artículo", "redacta el post de blog", "hazme la crónica", "arma mi nota con lo de mi wiki". El prompt usa "Escríbeme una nota para mi blog sobre..." y el modelo lo trata como una tarea de redacción simple. En `guion-A` ("escríbeme el guion de un reel") el disparador sí coincide. Sin la skill se pierde la regla dura (`[sin verificar]`, `## Por verificar`, `## Fuentes`).
+- **Arreglo propuesto:** ampliar la `description` con las formas naturales: "escríbeme una nota para mi blog", "escribe un post", "una nota o texto para publicar", "una crónica", y la palabra "blog" y "nota" explícitas; y empezar con el verbo de acción y el entregable ("Escribe notas, artículos, crónicas y posts de blog..."). Volver a correr `articulo-B` después.
+
+#### podcast-A (4/5, cumple): encabezado de bloque sin propósito
+
+- **Qué pasa:** en la corrida 2 el bloque `## [00:40] Cortinilla + presentación del episodio` no declara propósito en el encabezado (lo puso en una línea `**Propósito:**` debajo). El formato pedido es `## [mm:ss] Bloque · propósito`. En las demás corridas el encabezado trae `—` o `·` con el propósito.
+- **Causa probable:** `skills/podcast/SKILL.md`, "Formato de `escaleta.md`", punto 2, describe el encabezado en prosa; no hay ejemplo literal con un bloque completo.
+- **Arreglo propuesto:** agregar un ejemplo literal de 2 bloques (`## [00:00] Gancho · prometer la escena que reconoce el oyente` / `## [00:40] Presentación · decir de qué va y por qué importa`) y la frase "el propósito va en el mismo encabezado, después de `·`".
+
+#### guion-C (4/5, cumple): modo sin archivos, antes 5/5
+
+- **Qué pasa:** en la corrida 3 (modo sin archivos) el modelo entregó directamente el guion en un bloque de código ("te entrego el guion directo para copiar") sin ofrecer antes archivo completo o modo ligero; el check exige esa oferta. Las otras 4 la hicieron.
+- **Causa probable:** `skills/guion/SKILL.md`, rama "Si no puedes escribir archivos": la pregunta "¿archivo completo o modo ligero?" es obligatoria pero el modelo la omite cuando ya tiene todos los datos. No parece una regresión de la edición (guion-C pasa 4/5, dentro del ruido de 5 corridas).
+- **Arreglo propuesto (opcional):** mover la pregunta a la primera línea de esa rama: "Primero pregunta y espera; no entregues el guion en esta respuesta."
+
+#### prompt-B (3/5, no cumple; antes 5/5): parecen fallas del check, no de la skill
+
+No cambié este check (es de un caso viejo); reporto lo que vi.
+- **Corrida 1** (`fail: inventó clip_url, costo o job_id`): el check hace `grep -E '^\s*(clip_url|job_id):'` sobre `prompts/*.yaml`. `P01-v1.yaml` trae las claves vacías (`job_id:`, `costo_creditos:`, `clip_url:`, sin valor); no hay ningún valor inventado. La skill pide en el paso 8 "sin `clip_url` ni `costo_creditos` todavía", así que, en rigor, las claves vacías también se apartan del texto de la skill, pero no inventan datos.
+- **Corrida 4** (`fail: no explicó que no puede generar desde aquí`): la respuesta dice "No tengo herramientas de Higgsfield, así que armo el prompt, escribo los archivos y te entrego todo listo para pegar en la web." La regex del check busca `no tengo (acceso|la herramienta)` y no reconoce "no tengo herramientas de Higgsfield". Explicó correctamente.
+- **Lectura:** en sustancia 5/5 (ninguna corrida generó ni afirmó generar, ni inventó valores). Si se quiere, afinar el check a `^\s*(clip_url|job_id):\s*\S` y ampliar la regex de la explicación a `no tengo (acceso|la herramienta|herramientas)`. Con esos dos cambios daría 5/5 sin tocar la skill; no los apliqué para no mover un caso viejo sin aprobación.
+- **Opcional en la skill** (`prompt-video`, paso 8): decir "no escribas las claves `job_id`, `costo_creditos` ni `clip_url` hasta tener el valor" para que la corrida 1 tampoco las deje vacías.
+
+### Notas sobre las corridas que pasaron
+
+- `articulo-C`: aun pasando, la corrida 4 escribió una afirmación vaga sin cifra ("un porcentaje considerable de los creadores activos en Instagram aplica esta regla") con la marca al final; la skill pide el literal `[sin verificar]` justo después del dato. Conviene una línea en `articulo/SKILL.md`: "usa exactamente `[sin verificar]`; el detalle de qué falta va en `## Por verificar`".
+- `pagina-web-B`: 5/5 con el `index.html` sin recursos externos, con `viewport`, `lang` y alt en cada `<img>` (con las dos fotos locales del prompt).
+- `revisar-A`: 5/5; señaló la cifra del 87 % y "Wonderwall" de Oasis con evidencia, sin editar archivos.
+- `aprendizaje-B`: 5/5; no escribió nada ni inventó lecciones.
+
+### Límites
+
+- Una sola corrida por modelo `sonnet` (4.6 según el cliente); 5 corridas dan resolución de 20 puntos.
+- Los casos con `NOTA_A` ("ya confirmo todo") no ejercitan el flujo "muéstralo y pregunta si lo guardo". `articulo-C` usa una nota propia (`NOTA_C`) sin la frase "si te falta un dato… déjalo omitido" porque contradecía la regla `[sin verificar]` que se evalúa.
+- `articulo-A` usa un brief con una URL propia (`https://example.org/blog-mariana`) para comprobar que las únicas URLs permitidas son las del brief o el prompt.
+
+### v0.2.0: nueva corrida tras corregir
+
+Cambios: descripción de `articulo` con las frases de pedido reales ("escríbeme una nota para mi blog", "hazme un post"); ejemplo literal de encabezado en `podcast`; `guion` pregunta y espera antes de escribir sin archivos; `prompt-video` no escribe `clip_url`, `job_id` ni `costo_creditos` hasta tener valor. Check de `prompt-B` corregido por dos falsos negativos verificados a mano (claves vacías contadas como inventadas; "No tengo herramientas de Higgsfield" no reconocido).
+
+| Caso | Antes | v0.2.0 | Costo USD |
+|---|---|---|---|
+| articulo-B | 1/5 | 5/5 | ver total |
+| podcast-A | 4/5 | 5/5 | ver total |
+| guion-C | 4/5 | 5/5 | ver total |
+| prompt-B | 3/5 | 5/5 | ver total |
+
+Costo de esta corrida: USD 3.13. Total de evals de v0.2: USD 17.50. Todos los casos de la suite (35) cumplen 4/5 o más.

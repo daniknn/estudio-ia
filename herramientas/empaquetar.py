@@ -47,6 +47,11 @@ def parse_frontmatter(fm_lines):
     for k, v in data.items():
         if len(v) >= 2 and v[0] == v[-1] and v[0] in "\"'":
             data[k] = v[1:-1]
+        elif v and v[0] not in "|>" and (": " in v or " #" in v):
+            # YAML plano no admite ": " ni " #" sin comillas; claude plugin validate lo rechaza.
+            raise SkillError(
+                "%s tiene ': ' o ' #' sin comillas; ponlo entre comillas dobles o reescribe la frase" % k
+            )
     return data
 
 

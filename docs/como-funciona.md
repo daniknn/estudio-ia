@@ -12,11 +12,11 @@ Tu wiki guarda lo que aprendes. Pegas una fuente (un artículo, una transcripci�
 
 ## Proyectos
 
-Cada pieza que creas es un proyecto: empieza con un brief (qué debe lograr en el público), sigue con la estructura narrativa y el guion, y si es video con IA, con un shotlist, un estilo y los prompts de cada plano. Al terminar anotas aprendizajes, que pueden volver al wiki.
+Cada pieza que creas es un proyecto: empieza con un brief (qué debe lograr en el público), sigue con la estructura narrativa y el guion, y si es video con IA, con un shotlist, un estilo y los prompts de cada plano. Según el formato, el proyecto guarda su pieza en un archivo propio: `articulo.md` para un artículo, `web.md` (y, si lo pides, `web/index.html`) para una página web y `escaleta.md` para un podcast. Antes de publicar, `revisar` pasa una lista de verificación con hallazgos y evidencia, y tú decides cada punto. Al terminar, la skill `aprendizaje` te pregunta qué funcionó, qué no y qué repetirías, lo guarda en `aprendizajes.md` con fecha y, si tú quieres, convierte lo que sirva a futuro en fichas del wiki. Así el aprendizaje de un proyecto vuelve al wiki y alimenta el siguiente.
 
 ## Cómo se conectan
 
-El perfil orienta todo. El wiki alimenta los proyectos con lo que ya sabes. Los proyectos dejan aprendizajes que enriquecen el wiki. Las skills son los pasos que te acompañan entre una cosa y otra.
+El perfil orienta todo. El wiki alimenta los proyectos con lo que ya sabes. Los proyectos dejan aprendizajes que enriquecen el wiki. Las 13 skills son los pasos que te acompañan entre una cosa y otra.
 
 ## Dos vías, una nota honesta
 

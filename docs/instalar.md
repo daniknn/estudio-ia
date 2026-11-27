@@ -24,7 +24,7 @@ Hay dos vías. Elige una; puedes usar la otra después.
 ## Vía claude.ai
 
 1. Descarga los zips de la última Release del repositorio. Hay uno por skill.
-2. En claude.ai abre Customize, luego Skills, y elige Upload. Sube un zip por skill (son 8).
+2. En claude.ai abre Customize, luego Skills, y elige Upload. Sube un zip por skill (son 13).
 3. Activa la ejecución de código en tus ajustes. Sin ella, las skills no funcionan completas.
 4. Crea un Proyecto llamado "Mi estudio".
 5. En las instrucciones del Proyecto, pega el contenido de `claude-ai/instrucciones-proyecto.md`.

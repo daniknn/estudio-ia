@@ -22,15 +22,29 @@ Del brief, o preguntando lo que falte: formato y plataforma (video, reel o short
 
 ## Formato del guion
 
-Al inicio, siempre una línea:
+Al inicio, siempre una línea, y **nada antes de ella**: sin frontmatter, sin título previo, sin bloque YAML.
 
 `Duración estimada: <mm:ss>` (con cómo la calculaste en una frase: palabras habladas a ritmo normal, aproximadamente 130 a 150 palabras por minuto en voz en off, más pausas y planos sin voz).
 
 El **gancho va en el primer bloque**, siempre.
 
 - **Video con escenas:** encabezados `## ESC N · INT./EXT. LUGAR · MOMENTO`. Debajo de cada uno: acción, diálogo o voz en off, y una línea `Propósito:` con lo que esa escena hace por el efecto buscado.
-- **Reel, short, YouTube y podcast:** bloques `## [mm:ss] Bloque · propósito`, con el tiempo de inicio de cada bloque. Debajo: lo que se dice y lo que se ve o se escucha.
+- **Reel, short, YouTube y podcast:** bloques `## [mm:ss] Bloque · propósito`. El encabezado lleva **solo el tiempo de inicio** `[mm:ss]` del bloque, nunca rangos (`[00:00-00:15]` está mal). Debajo: lo que se dice y lo que se ve o se escucha.
 - **Anuncio:** usa el formato de bloques con tiempo; incluye problema o deseo, producto o promesa, prueba y CTA.
+
+Ejemplo literal de dos bloques (reel de 30 s):
+
+```
+Duración estimada: 00:30 (unas 60 palabras a ritmo normal, más pausas)
+
+## [00:00] Gancho · que el público quiera saber qué pasó con el café
+Voz en off: "Tiré mi café tres veces antes de entender esto."
+Se ve: taza que cae en cámara lenta, primer plano.
+
+## [00:08] Giro · mostrar el truco en una sola frase
+Voz en off: "Nunca fue la taza, era dónde la apoyaba."
+Se ve: mano que mueve la taza al centro del escritorio.
+```
 
 Reglas por bloque:
 1. Cada bloque tiene un propósito en una frase (qué hace por el público), no solo un tema.
@@ -57,7 +71,7 @@ Decide por capacidad, no por detectar el entorno. Lo que la persona te dice tamb
 
 ### Si no puedes escribir archivos (claude.ai)
 
-Pregunta una vez: "¿Quieres el archivo completo de tu proyecto actualizado para tu Proyecto, o modo ligero (el guion en el chat y copias lo que te sirva)?"
+Antes de escribir el guion, pregunta una vez y espera la respuesta: "¿Quieres el archivo completo de tu proyecto actualizado para tu Proyecto, o modo ligero (el guion en el chat y copias lo que te sirva)?"
 
 - Con archivo: el proyecto es un solo `<slug>.md` con brief, guion y notas juntos. Entrega el archivo completo con la sección `# Guion` actualizada y di: "Reemplaza `<slug>.md` en los archivos de tu Proyecto."
 - Si el Proyecto tiene `perfil.md` y el proyecto en su conocimiento, úsalos.

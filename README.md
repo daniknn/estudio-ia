@@ -6,7 +6,7 @@ Funciona en Claude Code (la vía completa) y en claude.ai (la vía ligera con un
 
 **Guía de instalación paso a paso:** https://claude.ai/artifact/7VTeQ2R1D9jZNvxo681bMX (copia en https://daniknn.github.io/estudio-ia/)
 
-## Las 8 skills
+## Las 13 skills
 
 En Claude Code se invocan como `/estudio-ia:<skill>`. En claude.ai se activan solas según lo que pidas.
 
@@ -20,6 +20,13 @@ En Claude Code se invocan como `/estudio-ia:<skill>`. En claude.ai se activan so
 | `reto-en-frio` | Otro modelo lee tu pieza en frío e intenta romperla; tú decides cada hallazgo |
 | `guion-a-shotlist` | Convierte un guion por escenas en un shotlist con propósito por plano |
 | `prompt-video` | Convierte un plano en un prompt de video; Higgsfield es opcional, con cotización y tu "sí" |
+| `articulo` | Artículo, nota, crónica o post con titular, entrada, cuerpo y cierre; cita solo fuentes reales y marca `[sin verificar]` lo demás |
+| `pagina-web` | Página sencilla (landing, portafolio o proyecto) con secciones, textos y llamada a la acción; el `index.html` solo si lo pides |
+| `podcast` | Escaleta por bloques con gancho primero, diseño sonoro con licencias y notas del episodio |
+| `aprendizaje` | Al cerrar una pieza o un intento, guarda lo que aprendiste y pasa lo útil al wiki; nunca inventa lecciones |
+| `revisar` | Lista de verificación antes de publicar, con hallazgos y evidencia; tú decides cada punto |
+
+**Novedades de v0.2:** cinco skills nuevas (`articulo`, `pagina-web`, `podcast`, `aprendizaje` y `revisar`), de 8 a 13 en total.
 
 ## Instalar en Claude Code
 

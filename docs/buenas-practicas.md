@@ -25,6 +25,7 @@ Listas cortas para revisar tu pieza antes de darla por lista. Todas parten de lo
 - Cada sección responde una pregunta del lector.
 - Los datos y citas tienen fuente que puedes mostrar.
 - El cierre resume o invita a actuar, sin repetir todo.
+- Antes de publicar, pasa la skill `revisar`: marca los datos `[sin verificar]` y revisa créditos y accesibilidad.
 
 ## Web
 
@@ -33,6 +34,7 @@ Listas cortas para revisar tu pieza antes de darla por lista. Todas parten de lo
 - Los textos son cortos, con títulos que se pueden leer en diagonal.
 - Las imágenes tienen texto alternativo y el contraste se lee bien.
 - Se ve bien en celular primero.
+- Antes de publicar, pasa la skill `revisar`: revisa contraste, texto alternativo y créditos.
 
 ## Podcast
 
@@ -41,6 +43,7 @@ Listas cortas para revisar tu pieza antes de darla por lista. Todas parten de lo
 - Hay preguntas o ejemplos concretos, no solo opiniones.
 - El cierre repite la idea central y dice qué sigue.
 - El audio es limpio: sin ruido de fondo y con volumen parejo.
+- Antes de publicar, pasa la skill `revisar`: revisa licencias de música y efectos, y créditos de terceros.
 
 ## Prompts de video
 
