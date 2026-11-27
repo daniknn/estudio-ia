@@ -21,7 +21,7 @@ Aquí no descargas zips: el comando del paso 2 trae las 13 skills directo de Git
    /plugin install estudio-ia@estudio-ia-daniknn
    ```
 4. Crea una carpeta vacía para tu estudio, por ejemplo `mi-estudio`. No tienes que descargar nada: `inicio` crea dentro tu perfil, tu wiki y la carpeta de proyectos.
-5. Abre Claude Code en esa carpeta y escribe `/estudio-ia:inicio`. Se recomienda usar git en esa carpeta; `inicio` te pregunta si quieres que te explique cómo.
+5. En la terminal, entra a esa carpeta y abre Claude Code escribiendo `claude`. Cuando veas el cuadro de Claude Code, escribe ahí `/estudio-ia:inicio`. Si lo escribes en la terminal sola, verás `no such file or directory`. Se recomienda usar git en esa carpeta; `inicio` te pregunta si quieres que te explique cómo.
 
 ## Vía claude.ai
 
