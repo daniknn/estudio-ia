@@ -245,7 +245,7 @@ footer p { color: var(--fg); }
             <div class="cmd"><pre tabindex="0"><code>/plugin install estudio-ia@estudio-ia-daniknn</code></pre><button class="copy" type="button" aria-label="Copiar el comando para instalar el plugin">Copiar</button></div>
           </div></li>
           <li><div class="body">
-            <p>Crea una carpeta para tu espacio y copia dentro el contenido de <code>espacio/</code> del <a href="https://github.com/daniknn/estudio-ia">repositorio</a>. Se recomienda usar git en esa carpeta.</p>
+            <p>Crea una carpeta vacía para tu estudio, por ejemplo <code>mi-estudio</code>. No tienes que descargar nada: en el siguiente paso, <code>inicio</code> crea dentro tu perfil, tu wiki y la carpeta de proyectos.</p>
           </div></li>
           <li><div class="body">
             <p>Abre Claude Code en esa carpeta y escribe:</p>
@@ -259,11 +259,15 @@ footer p { color: var(--fg); }
         <h3>Vía claude.ai</h3>
         <ol class="steps">
           <li><div class="body">
-            <p>Descarga los zips de la última Release del repositorio. Hay uno por skill.</p>
-            <div class="row"><a class="btn" href="https://github.com/daniknn/estudio-ia/releases/latest">Descargar los zips</a></div>
+            <p>Abre la última Release. Hasta abajo, en <b>Assets</b>, descarga los archivos <code>.zip</code> que tienen nombre de skill: <code>inicio.zip</code>, <code>wiki.zip</code>, <code>brief.zip</code>, <code>guion.zip</code> y los demás (son 13). No descargues los de <b>Source code</b>: son el código del repositorio y no sirven para subir.</p>
+            <div class="row"><a class="btn" href="https://github.com/daniknn/estudio-ia/releases/latest">Ir a la Release</a></div>
+            <p>Para probar rápido bastan <code>inicio.zip</code>, <code>brief.zip</code> y <code>guion.zip</code>. Sube los demás cuando los necesites.</p>
           </div></li>
           <li><div class="body">
-            <p>En claude.ai abre Customize, luego Skills, y elige Upload. Sube un zip por skill (son 13).</p>
+            <p>No descomprimas los zips. Si tu navegador los abrió solo y ves carpetas en lugar de archivos <code>.zip</code> (pasa con Safari en Mac), descárgalos de nuevo con Chrome o desactiva en Safari la opción de abrir archivos seguros después de descargarlos.</p>
+          </div></li>
+          <li><div class="body">
+            <p>En claude.ai abre Customize, luego Skills, y elige Upload. Sube un zip a la vez.</p>
           </div></li>
           <li><div class="body">
             <p>Activa la ejecución de código en tus ajustes. Sin ella, las skills no funcionan completas.</p>
@@ -273,13 +277,7 @@ footer p { color: var(--fg); }
             <div class="cmd"><pre tabindex="0"><code>Mi estudio</code></pre><button class="copy" type="button" aria-label="Copiar el nombre del Proyecto">Copiar</button></div>
           </div></li>
           <li><div class="body">
-            <p>En las instrucciones del Proyecto, pega el contenido de <code>claude-ai/instrucciones-proyecto.md</code> del <a href="https://github.com/daniknn/estudio-ia">repositorio</a>.</p>
-          </div></li>
-          <li><div class="body">
-            <p>Sube al Proyecto los archivos <code>claude-ai/perfil.md</code> y <code>claude-ai/wiki.md</code>, llenando primero tu perfil. Por cada proyecto, sube una copia de <code>claude-ai/proyecto-plantilla.md</code> con su nombre.</p>
-          </div></li>
-          <li><div class="body">
-            <p>Abre un chat dentro del Proyecto y escribe:</p>
+            <p>Abre un chat dentro del Proyecto y escribe la frase de abajo. <code>inicio</code> te hace unas preguntas y te entrega tu <code>perfil.md</code>, tu <code>wiki.md</code> y el texto de instrucciones del Proyecto, y te dice dónde va cada uno. No tienes que descargar nada más del repositorio.</p>
             <div class="cmd"><pre tabindex="0"><code>quiero empezar</code></pre><button class="copy" type="button" aria-label="Copiar la frase quiero empezar">Copiar</button></div>
           </div></li>
         </ol>

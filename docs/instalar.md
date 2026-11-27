@@ -18,18 +18,19 @@ Hay dos vías. Elige una; puedes usar la otra después.
    ```
    /plugin install estudio-ia@estudio-ia-daniknn
    ```
-4. Crea una carpeta para tu espacio y copia dentro el contenido de `espacio/` de este repositorio. Se recomienda usar git en esa carpeta.
-5. Abre Claude Code en esa carpeta y escribe `/estudio-ia:inicio`.
+4. Crea una carpeta vacía para tu estudio, por ejemplo `mi-estudio`. No tienes que descargar nada: `inicio` crea dentro tu perfil, tu wiki y la carpeta de proyectos.
+5. Abre Claude Code en esa carpeta y escribe `/estudio-ia:inicio`. Se recomienda usar git en esa carpeta; `inicio` te pregunta si quieres que te explique cómo.
 
 ## Vía claude.ai
 
-1. Descarga los zips de la última Release del repositorio. Hay uno por skill.
-2. En claude.ai abre Customize, luego Skills, y elige Upload. Sube un zip por skill (son 13).
-3. Activa la ejecución de código en tus ajustes. Sin ella, las skills no funcionan completas.
-4. Crea un Proyecto llamado "Mi estudio".
-5. En las instrucciones del Proyecto, pega el contenido de `claude-ai/instrucciones-proyecto.md`.
-6. Sube al Proyecto los archivos `claude-ai/perfil.md` y `claude-ai/wiki.md`, llenando primero tu perfil. Por cada proyecto, sube una copia de `claude-ai/proyecto-plantilla.md` con su nombre.
-7. Abre un chat dentro del Proyecto y escribe "quiero empezar".
+1. Abre la [última Release](https://github.com/daniknn/estudio-ia/releases/latest. Hasta abajo, en **Assets**, descarga los archivos `.zip` que tienen nombre de skill: `inicio.zip`, `wiki.zip`, `brief.zip`, `guion.zip` y los demás (son 13). No descargues los de **Source code**: son el código del repositorio y no sirven para subir. Para probar rápido bastan `inicio.zip`, `brief.zip` y `guion.zip`.
+2. No descomprimas los zips. Si tu navegador los abrió solo y ves carpetas en lugar de archivos `.zip` (pasa con Safari en Mac), descárgalos de nuevo con Chrome o desactiva en Safari la opción de abrir archivos seguros después de descargarlos.
+3. En claude.ai abre Customize, luego Skills, y elige Upload. Sube un zip a la vez.
+4. Activa la ejecución de código en tus ajustes. Sin ella, las skills no funcionan completas.
+5. Crea un Proyecto llamado "Mi estudio".
+6. Abre un chat dentro del Proyecto y escribe "quiero empezar". `inicio` te hace unas preguntas y te entrega tu `perfil.md`, tu `wiki.md` y el texto de instrucciones del Proyecto, y te dice dónde va cada uno. No tienes que descargar nada más del repositorio.
+
+Las plantillas de `claude-ai/` en el repositorio son de referencia; no hace falta descargarlas.
 
 ## Actualizar
 

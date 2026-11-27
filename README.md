@@ -39,10 +39,10 @@ La primera vez, actualiza Claude Code con `claude update` para tener la versión
 
 ## Instalar en claude.ai
 
-1. Descarga los zips de la última Release del repositorio (uno por skill).
-2. En claude.ai ve a Customize, luego Skills, y usa Upload. Sube un zip por skill.
+1. En la [última Release](https://github.com/daniknn/estudio-ia/releases/latest), sección **Assets**, descarga los `.zip` con nombre de skill (`inicio.zip`, `brief.zip`, `guion.zip`…). No los de **Source code**, y no los descomprimas.
+2. En claude.ai ve a Customize, luego Skills, y usa Upload. Sube un zip a la vez.
 3. Activa la ejecución de código en tus ajustes.
-4. Crea un Proyecto llamado "Mi estudio" y pega las instrucciones de `claude-ai/instrucciones-proyecto.md`.
+4. Crea un Proyecto llamado "Mi estudio", abre un chat dentro y escribe "quiero empezar". `inicio` te entrega tu perfil, tu wiki y las instrucciones del Proyecto.
 
 Pasos detallados y advertencias en [docs/instalar.md](docs/instalar.md).
 
