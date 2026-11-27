@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>estudio-ia: guía de instalación</title>
+<title>Guía estudio-ia</title>
 <meta name="description" content="Instala estudio-ia en Claude Code o en claude.ai y crea contenidos con IA: brief, guion, shotlist y prompts de video.">
 <style>
 /* Identidad de claqueta: tinta, papel y cinta gaffer amarilla. Sin recursos externos. */
@@ -37,7 +37,7 @@
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --mark: rgba(245,197,24,0.3);
     --bg: #121214; --bg-alt: #1B1B1F; --card: #1B1B1F; --tinted: #2B2508;
     --fg: #D9D8D2; --fg-strong: #FAFAF7; --muted: #A9A8A2; --link: #FAFAF7; --link-line: #F5C518; --on-tinted: #FFE28A;
@@ -47,6 +47,16 @@
     --focus: 0 0 0 3px #121214, 0 0 0 6px #F5C518;
     color-scheme: dark;
   }
+}
+:root[data-theme="dark"] {
+  --mark: rgba(245,197,24,0.3);
+  --bg: #121214; --bg-alt: #1B1B1F; --card: #1B1B1F; --tinted: #2B2508;
+  --fg: #D9D8D2; --fg-strong: #FAFAF7; --muted: #A9A8A2; --link: #FAFAF7; --link-line: #F5C518; --on-tinted: #FFE28A;
+  --border: #3A3A41; --border-tinted: #6B5A12; --nav: #0B0B0D;
+  --warn-bg: #3A2410; --warn-fg: #FFD8B0; --ok-bg: #12301F; --ok-fg: #C6E8D4;
+  --code-bg: #0B0B0D; --code-fg: #F0EFEA; --btn-border: #8A8A92;
+  --focus: 0 0 0 3px #121214, 0 0 0 6px #F5C518;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -152,6 +162,7 @@ footer p { color: var(--fg); }
       <a href="#skills">Skills</a>
       <a href="#creditos">Créditos</a>
       <a href="#actualizar">Actualizar</a>
+      <a href="https://github.com/daniknn/estudio-ia">GitHub</a>
     </nav>
   </div>
 </header>

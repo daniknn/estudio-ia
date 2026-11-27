@@ -4,7 +4,7 @@ Un ecosistema público y autónomo para crear contenidos con IA (video, redes, a
 Te da skills con buenas prácticas, un perfil tuyo, un wiki de lo que aprendes y proyectos ordenados (brief, guion, shotlist y prompts de video).
 Funciona en Claude Code (la vía completa) y en claude.ai (la vía ligera con un Proyecto).
 
-**Guía de instalación paso a paso:** https://daniknn.github.io/estudio-ia/
+**Guía de instalación paso a paso:** https://claude.ai/artifact/7VTeQ2R1D9jZNvxo681bMX (copia en https://daniknn.github.io/estudio-ia/)
 
 ## Las 8 skills
 
