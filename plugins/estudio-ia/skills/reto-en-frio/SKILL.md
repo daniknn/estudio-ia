@@ -19,7 +19,7 @@ Objetivo: que encuentres los huecos de tu material antes de publicarlo, y que ca
 
 ## Regla de doble vía
 
-Se decide por capacidad, no por detección del entorno. Aquí lo que cambia es **cómo se consigue otro modelo**.
+Se decide por capacidad, no por detección del entorno. Lo que la persona te dice también cuenta: si dice que está en claude.ai o que no puedes escribir archivos, sigue la vía sin archivos aunque tengas herramientas para escribir. Aquí lo que cambia es **cómo se consigue otro modelo**.
 
 1. **Si existe la herramienta Agent** (Claude Code): lanza un subagente con un modelo distinto al tuyo. Tú sabes cuál eres por tu prompt de sistema.
    - Si eres Sonnet, usa `opus`; si eres Opus, usa `sonnet`; si eres Haiku, usa `sonnet`; si eres Fable, usa `opus`.

@@ -37,7 +37,7 @@ Entrevista corta: cubre los campos en este orden aproximado (nombre, qué hace, 
 
 ## Regla de doble vía
 
-Decide por capacidad, no por detectar el entorno.
+Decide por capacidad, no por detectar el entorno. Lo que la persona te dice también cuenta: si dice que está en claude.ai o que no puedes escribir archivos, sigue la vía sin archivos aunque tengas herramientas para escribir.
 
 ### Si puedes leer y escribir archivos (Claude Code)
 

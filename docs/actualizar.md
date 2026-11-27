@@ -8,7 +8,7 @@ Cada vía se actualiza de forma distinta.
 2. Si algo no aparece, corre `claude update` para tener la última versión de Claude Code y reinicia.
 3. Tus archivos (`perfil.md`, `wiki/`, `proyectos/`) no se tocan: las actualizaciones solo cambian las skills.
 
-**Versión visible:** la versión del plugin está en `plugins/estudio-ia/.claude-plugin/plugin.json` y en el listado de `/plugin`. La versión actual de esta guía es 0.1.0.
+**Versión visible:** la versión del plugin está en `plugins/estudio-ia/.claude-plugin/plugin.json` y en el listado de `/plugin`. La versión actual de esta guía es 0.1.1.
 
 ## claude.ai
 

@@ -32,6 +32,8 @@ Frontmatter plano `clave: valor`, una línea por clave, sin anidar:
 | `estructura` | opcional; la llena `storytelling` |
 | `presupuesto_creditos` | entero, opcional (solo si hay video generado con IA y tope de créditos) |
 
+Un campo opcional sin valor se omite: ni vacío, ni `TODO`, ni un marcador. `presupuesto_creditos` solo lo da la persona; no lo copies de `tope_creditos_mes` del perfil (ese es el tope del mes, no el de esta pieza).
+
 Vacío, `TODO`, `...` o algo entre `< >` cuenta como faltante. El cuerpo después del frontmatter es libre: notas, referencias, restricciones, con palabras de la persona.
 
 ## Reglas de contenido
@@ -44,7 +46,7 @@ Vacío, `TODO`, `...` o algo entre `< >` cuenta como faltante. El cuerpo despué
 
 ## Regla de doble vía
 
-Decide por capacidad, no por detectar el entorno.
+Decide por capacidad, no por detectar el entorno. Lo que la persona te dice también cuenta: si dice que está en claude.ai o que no puedes escribir archivos, sigue la vía sin archivos aunque tengas herramientas para escribir.
 
 ### Si puedes leer y escribir archivos (Claude Code)
 

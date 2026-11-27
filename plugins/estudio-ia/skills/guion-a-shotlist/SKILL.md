@@ -77,7 +77,7 @@ Los planos nuevos empiezan en `idea`. `prompt_id` y `clip_url` se agregan despu�
 4. **Huecos de cobertura.** Al terminar, señala escenas sin plano o momentos donde ayudaría un plano de apoyo (inserto, plano de reacción, detalle de un objeto). Son sugerencias; no las agregues sin su sí.
 5. **Modelo.** Pregunta una vez: "¿Con qué modelo de video piensas generar estos planos? Dime el nombre como aparece en la herramienta." Escribe lo que diga. Si todavía no decide, escribe `por decidir` solo con su OK. No propongas ni escribas un nombre de modelo que el usuario no dijo.
 6. **Muestra** el guion y el shotlist completos y pregunta si los escribes (o, en claude.ai, si quiere el archivo completo).
-7. **Escribe** `guion.md` y `shotlist.yaml`. Conserva lo que ya había y no borres planos existentes sin que lo pida. Los ids siguen la numeración: P01, P02, ...
+7. **Escribe** `guion.md` y `shotlist.yaml`. En el YAML, pon entre comillas dobles todo valor de texto que lleve `:` o `#`, y revisa que el archivo se pueda leer como YAML antes de darlo por terminado. Conserva lo que ya había y no borres planos existentes sin que lo pida. Los ids siguen la numeración: P01, P02, ...
 8. **Cierra** con una sola pregunta: "¿Seguimos con el prompt del primer plano (`prompt-video`), o quieres que otro modelo le haga un reto en frío primero?"
 
 ## Si algo no encaja

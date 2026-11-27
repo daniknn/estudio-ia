@@ -19,7 +19,7 @@ Objetivo: por cada plano que trabajes, un `proyectos/<slug>/prompts/<plano>-vN.y
 
 ## Regla de doble vía
 
-Se decide por capacidad, no por detección del entorno.
+Se decide por capacidad, no por detección del entorno. Lo que la persona te dice también cuenta: si dice que está en claude.ai o que no puedes escribir archivos, sigue la vía sin archivos aunque tengas herramientas para escribir.
 
 1. **Si puedes leer y escribir archivos del espacio** (Claude Code): trabaja en `proyectos/<slug>/`. Si existe `perfil.md`, léelo antes; si no existe, sugiere `inicio`.
 2. **Si no puedes escribir archivos** (claude.ai): pregunta una vez si quiere el archivo completo para su Proyecto o el modo ligero.

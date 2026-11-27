@@ -44,7 +44,7 @@ Citar a una persona real como referente en el perfil o el brief está bien; usar
 
 ## Regla de doble vía
 
-Decide por capacidad, no por detectar el entorno.
+Decide por capacidad, no por detectar el entorno. Lo que la persona te dice también cuenta: si dice que está en claude.ai o que no puedes escribir archivos, sigue la vía sin archivos aunque tengas herramientas para escribir.
 
 - **Si puedes leer y escribir archivos (Claude Code):** si existe `perfil.md`, léelo antes de empezar; si no, sugiere `inicio`. Lee `proyectos/<slug>/brief.md` si hay uno (pregunta cuál si hay varios). Al terminar, muestra la estructura elegida con su esqueleto y, con el sí de la persona, escribe el campo `estructura` en el frontmatter del brief (nombre de la estructura, en una línea) y el esqueleto en el cuerpo, sin tocar los demás campos. Si no hay brief, ofrece crearlo con la skill `brief` en vez de inventar uno.
 - **Si no puedes escribir archivos (claude.ai):** pregunta una vez si quiere el archivo completo del proyecto actualizado o el modo ligero. Con archivo, entrega el `<slug>.md` completo con `estructura` en el frontmatter y el esqueleto en el cuerpo, y di: "Reemplaza `<slug>.md` en los archivos de tu Proyecto." Si el Proyecto ya trae `perfil.md` y el proyecto en su conocimiento, úsalos. En modo ligero, da el campo `estructura` y el esqueleto en un bloque para copiar.

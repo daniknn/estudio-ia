@@ -29,13 +29,21 @@ Acepta texto pegado, `.md`, PDF o transcripción. Para cada fuente:
 
 1. Extrae el texto. Si no puedes leer el archivo (PDF escaneado, imagen), dilo y pide el texto.
 2. Propón una lista corta de conceptos candidatos (de 3 a 8) y pregunta cuáles quiere. No fichas todo por defecto.
-3. Redacta cada ficha con las **palabras propias** de la persona o tuyas parafraseando, de 2 a 4 líneas; no copies párrafos largos de la fuente.
+3. Redacta cada ficha con las **palabras propias** de la persona o tuyas parafraseando, de 2 a 4 líneas; no copies párrafos largos de la fuente. Usa exactamente este formato, sin frontmatter YAML:
+
+   ```
+   # <Concepto>
+   Idea: <2 a 4 líneas>
+   Fuente: <archivo de RAW/, "pegado por ti, AAAA-MM-DD", URL que dio la persona, o "sin verificar">
+   Ejemplo: <opcional>
+   Relacionado: [[otro-concepto]]
+   ```
 4. Actualiza el índice y propone `Relacionado` solo hacia fichas que existen.
-5. Antes de escribir, muestra las fichas y pregunta si las guardas.
+5. Antes de escribir, define la vía (ver abajo). Con archivos, muestra las fichas y pregunta si las guardas. Sin archivos, pregunta una vez si quiere el `wiki.md` completo o modo ligero.
 
 ## Regla de doble vía
 
-Decide por capacidad, no por detectar el entorno.
+Decide por capacidad, no por detectar el entorno. Lo que la persona te dice también cuenta: si dice que está en claude.ai o que no puedes escribir archivos, sigue la vía sin archivos aunque tengas herramientas para escribir.
 
 ### Si puedes leer y escribir archivos (Claude Code)
 

@@ -1,0 +1,17 @@
+planos:
+  - id: P01
+    escena: 1
+    proposito: Abrir con la letra de la abuela para prometer una historia sobre ella
+    descripcion: Primer plano de las manos de la nieta abriendo el cuaderno de la receta
+    duracion_s: 4
+    camara: plano detalle, cámara fija
+    modelo: Seedance 2.0
+    estado: idea
+  - id: P02
+    escena: 2
+    proposito: Llevar al público al recuerdo de las manos de la abuela
+    descripcion: Las manos de la nieta amasan y se ven unas manos mayores sobre las suyas
+    duracion_s: 5
+    camara: travelling lento hacia las manos
+    modelo: Seedance 2.0
+    estado: idea
